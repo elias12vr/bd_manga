@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Manga = require('../models/Manga'); // Asegúrate de que la ruta al modelo sea correcta
+const Manga = require('../models/Manga'); // Asegúrate de que la ruta sea correcta
 
-// Obtener todos los mangas
+// Ruta para obtener todos los mangas y renderizar la vista
 router.get('/mangas', async (req, res) => {
   try {
-    // Buscar todos los mangas en la base de datos
-    const mangas = await Manga.find();
-    res.json(mangas); // Devolver los mangas en formato JSON
+    const mangas = await Manga.find(); // Obtener todos los mangas de la colección 'mangas'
+    console.log(mangas); // Verifica qué datos estás obteniendo
+    res.render('mangas', { mangas });  // Renderiza la plantilla 'mangas.ejs' pasando los datos
   } catch (error) {
-    // Manejo de errores del servidor
+    console.error('Error al obtener los mangas:', error);
     res.status(500).json({ error: 'Error del servidor al obtener los mangas' });
   }
 });
