@@ -22,17 +22,18 @@
             border-radius: 10px; /* Esquinas redondeadas */
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra */
             overflow: hidden; /* Esquinas redondeadas */
+            border: 1px solid #007bff; /* Borde azul */
         }
         h1 {
             margin: 20px 0;
             text-align: center;
-            color: #343a40; /* Color del título */
+            color: #007bff; /* Color del título */
             font-weight: 700;
         }
         table {
             margin-bottom: 0; /* Eliminar margen inferior */
         }
-        .thead-dark {
+        .thead-custom {
             background-color: #007bff; /* Color de fondo azul para el encabezado */
             color: #ffffff; /* Color de texto blanco */
             text-transform: uppercase; /* Texto en mayúsculas */
@@ -46,26 +47,22 @@
         tr:hover {
             background-color: #f1f1f1; /* Color de fondo al pasar el ratón */
         }
-        .btn-custom {
-            background-color: #28a745; /* Color de fondo para botones */
-            color: white;
+        /* Estilo para filas de mangas */
+        .manga-row {
+            transition: transform 0.2s; /* Animación suave */
         }
-        .btn-custom:hover {
-            background-color: #218838; /* Color de fondo al pasar el ratón */
+        .manga-row:hover {
+            transform: scale(1.02); /* Efecto de escalado al pasar el ratón */
+            background-color: #e2e6ea; /* Color de fondo más claro */
         }
-        .btn-secondary {
-            background-color: #007bff; /* Color de fondo azul para el botón secundario */
-            color: white;
+        /* Estilo para la disponibilidad */
+        .disponible {
+            color: #28a745; /* Color verde para disponibilidad */
+            font-weight: bold;
         }
-        .btn-secondary:hover {
-            background-color: #0056b3; /* Color de fondo al pasar el ratón */
-        }
-        .btn-danger {
-            background-color: #dc3545; /* Color de fondo rojo para el botón de eliminar */
-            color: white;
-        }
-        .btn-danger:hover {
-            background-color: #c82333; /* Color de fondo al pasar el ratón */
+        .no-disponible {
+            color: #dc3545; /* Color rojo para no disponible */
+            font-weight: bold;
         }
     </style>
 </head>
@@ -73,7 +70,7 @@
     <div class="container table-container">
         <h1>Lista de Mangas</h1>
         <table class="table table-striped table-hover">
-            <thead class="thead-dark">
+            <thead class="thead-custom">
                 <tr>
                     <th>ID Manga</th>
                     <th>Nombre del Manga</th>
@@ -81,22 +78,18 @@
                     <th>Género</th>
                     <th>Precio</th>
                     <th>Disponibilidad</th>
-                    <th>Acciones</th> <!-- Columna para acciones -->
                 </tr>
             </thead>
             <tbody>
                 <% mangas.forEach(function(manga) { %>
-                    <tr>
+                    <tr class="manga-row">
                         <td><%= manga.idmanga %></td>
                         <td><%= manga.NomManga %></td>
                         <td><%= manga.Autor %></td>
                         <td><%= manga.Genero %></td>
                         <td><%= manga.Precio.toFixed(2) %> €</td> <!-- Formatear el precio -->
-                        <td><%= manga.Disponibilidad %></td>
-                        <td>
-                            <button class="btn btn-custom btn-sm">Ver Detalles</button> <!-- Botón de acción -->
-                            <button class="btn btn-secondary btn-sm">Editar</button> <!-- Botón de acción -->
-                            <button class="btn btn-danger btn-sm">Eliminar</button> <!-- Botón de acción -->
+                        <td class="<%= manga.Disponibilidad === 'Disponible' ? 'disponible' : 'no-disponible' %>">
+                            <%= manga.Disponibilidad %>
                         </td>
                     </tr>
                 <% }) %>
