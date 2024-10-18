@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= manga.NomManga %> - Detalles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .manga-details {
+            max-width: 800px;
+            margin: 30px auto;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+        }
+        .card-body p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container manga-details">
+        <div class="card">
+            <div class="card-header">
+                <h1><%= manga.NomManga %></h1>
+            </div>
+            <div class="card-body">
+                <p><strong>Autor:</strong> <%= manga.Autor %></p>
+                <p><strong>Género:</strong> <%= manga.Genero %></p>
+                <p><strong>Precio:</strong> $ <%= manga.Precio %> .00 </p>
+                <p><strong>Disponibilidad:</strong> <%= manga.Disponibilidad %></p>
+                <a href="/mangas" class="btn btn-primary mt-3">Volver a la lista</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

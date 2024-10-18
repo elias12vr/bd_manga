@@ -1,16 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const Manga = require('../models/Manga'); // Asegúrate de que la ruta sea correcta
+const Manga = require('../models/Manga');
 
-// Ruta para obtener todos los mangas y renderizar la vista
+// Obtener todos los mangas
 router.get('/mangas', async (req, res) => {
   try {
-    const mangas = await Manga.find(); // Obtener todos los mangas de la colección 'mangas'
-    console.log(mangas); // Verifica qué datos estás obteniendo
-    res.render('mangas', { mangas });  // Renderiza la plantilla 'mangas.ejs' pasando los datos
+    const mangas = await Manga.find();
+    res.render('mangas', { mangas });
   } catch (error) {
-    console.error('Error al obtener los mangas:', error);
     res.status(500).json({ error: 'Error del servidor al obtener los mangas' });
+  }
+});
+
+// Obtener un manga por nombre (como DeathNote)
+router.get('/mangas/:nombre', async (req, res) => {
+  try {
+    const nombreManga = req.params.nombre;
+    const manga = await Manga.findOne({ NomManga: nombreManga });
+
+    if (!manga) {
+      return res.status(404).send('El manga no fue encontrado');
+    }
+
+    res.render('detalleManga', { manga }); // Renderiza la vista con los detalles del manga
+  } catch (error) {
+    res.status(500).json({ error: 'Error del servidor al obtener el manga' });
   }
 });
 
