@@ -1,6 +1,1 @@
-"# bd_manga" 
-"# bd_manga" 
-"# API" 
-"# API" 
-"# API_TiendaDeMangas" 
-"# API_TiendaDeMangas" 
+Combinamos la API con la Base de Datos de una Tienda de Mangas
