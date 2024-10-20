@@ -1,8 +1,12 @@
 const express = require('express');
-const app = express();
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 const mangaController = require('./controllers/mangaController');
+
+const app = express();
+
+// Middleware para parsear JSON
+app.use(express.json());
 
 // Conectar a la base de datos de MongoDB
 mongoose.connect('mongodb://localhost:27017/TiendadeMangas')

@@ -94,7 +94,7 @@
             <tbody>
                 <% mangas.forEach(function(manga) { %>
                     <tr class="manga-row">
-                        <td><%= manga.idmanga %></td>
+                        <td><%= manga._id %></td>
                         <td><a href="/mangas/<%= manga.NomManga %>"><%= manga.NomManga %></a></td>
                         <td><%= manga.Autor %></td>
                         <td><%= manga.Genero %></td>
